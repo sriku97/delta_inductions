@@ -13,7 +13,7 @@
     $conn=new mysqli("localhost","root","");
     if(mysqli_select_db($conn,'delta')) //execute only if database exists
     {
-    	$result=$conn->query("SELECT imageurl FROM userdetails where rollno=".(int)$input);
+    	$result=$conn->query("SELECT imageurl FROM userdetails where rollno=".(int)$_GET['rollno']);
     	$url=mysqli_fetch_array($result);
         if($url)
     	    echo "<h1><a href='".$url[0]."'>Profile Picture</a></h1>"; //provides link to profile pic

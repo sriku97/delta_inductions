@@ -10,6 +10,15 @@
 <body style="background:lightgreen">
 <div style="text-align:center">
 <?php
+    
+    function sanitize($data)
+    {
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+    }     
+
     error_reporting(E_ERROR | E_PARSE);
     //session_start(); //access session variables
     $error=0; //for validation
@@ -18,13 +27,13 @@
     $rollno=$name=$dept=$year=$email=$password="";
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
-    	$name=trim($_POST['name']);
-    	$rollno=trim($_POST['rollno']);
-    	$dept=$_POST['dept'];
-    	$year=$_POST['year'];
-    	$email=trim($_POST['email']);
-    	$password=$_POST['password'];
-        $random_number=$_POST['randomnumber'];
+    	$name=sanitize($_POST['name']);
+    	$rollno=sanitize($_POST['rollno']);
+    	$dept=sanitize($_POST['dept']);
+    	$year=sanitize($_POST['year']);
+    	$email=sanitize($_POST['email']);
+    	$password=sanitize($_POST['password']);
+        $random_number=sanitize($_POST['randomnumber']);
     }
     if(empty($name)==true||empty($rollno)==true||empty($dept)==true||empty($year)==true||empty($email)==true||empty($password)==true)
     {
